@@ -1,0 +1,51 @@
+<!-- https://media.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif   -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="image" src="https://media.giphy.com/media/jAYUbVXgESSti/giphy.gif" alt="">
+</body>
+</html>
+
+<script>
+    let image = document.querySelector("#image");
+    function getData(){
+        return false;
+    }
+
+    let myPromise = new Promise(function(resolve,reject){
+        
+        // initially there is no data
+        let data = false;
+        
+        setTimeout(() => {
+            data = getData();
+
+            if(data){
+                resolve("sweet");
+            }
+            else{
+                reject("chappal")
+            }
+            
+        }, 3000);
+        
+    })
+
+    myPromise.then(function(res){
+        console.log(res);
+        image.src = "https://media.giphy.com/media/4xpB3eE00FfBm/giphy.gif";
+    })
+
+    myPromise.catch(function(err){
+        console.log(err)
+        image.src = "https://media.giphy.com/media/EXHHMS9caoxAA/giphy.gif";
+    })
+    // console.log(myPromise)
+</script>

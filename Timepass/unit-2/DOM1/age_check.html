@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+    <input id="age" type="number" placeholder="Enter Your Age" />
+    <button onClick="checkIt()">Check</button>
+    <h1 id="head"></h1>
+</body>
+</html>
+
+<script>
+
+    function checkIt(){
+        let age = document.getElementById("age").value;
+        let head = document.getElementById("head");
+
+        if(age>18){
+            head.innerText="You can drive in India!"
+        }
+        else if(age<18){
+            head.innerText="You can't drive in India"
+        }
+        else if(age==18){
+            head.innerText="You are just old enough to drive in India!"
+        }
+    }
+
+</script>

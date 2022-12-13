@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <form id="form">
+            <input id="name" type="text" placeholder="enter name here">
+            <input id="price" type="number" placeholder="enter price here">
+            <input id="btn" type="submit" value="Click">
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+    let formTag = document.querySelector("form");
+    formTag.addEventListener("submit",myFunction);
+    let nikeData = [];
+
+    function myFunction(event){
+        event.preventDefault();
+
+        let name = formTag.name.value;
+        let price = formTag.price.value;
+
+        let nikeObj = new Nike(name,price)
+
+         nikeData.push(nikeObj);
+         console.log(nikeData)
+    }
+
+    function Nike(n,p){
+        this.name = n;
+        this.price = p;
+    }
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead-Board</title>
+</head>
+<body>
+    <div id="min">
+        <p>min value</p>
+        <h1 id="min_value">0</h1>
+    </div>
+
+
+    <div id="max">
+        <p>max value</p>
+        <h1 id="max_value">0</h1>
+    </div>
+
+    <input type="number" placeholder="Enter a Number" id="inner"> <br> <br>
+    <button id="btn" onClick="findMinMax()">PRESS</button>
+</body>
+</html>
+
+<script>
+    function findMinMax(){
+        let inputval = document.querySelector("#inner").value;
+        let lower = document.querySelector("#min_value").innerText;
+        let higher = document.querySelector("#max_value").innerText;
+
+        if(inputval>lower && inputval>higher)
+        {
+            document.querySelector("#max_value").innerText=inputval;
+        }
+        else if(inputval<higher && inputval<lower){
+            document.querySelector("#min_value").innerText=inputval;
+        }
+    }
+</script>

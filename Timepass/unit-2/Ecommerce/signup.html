@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up Page</title>
+    <style>
+        body{
+            background-color: teal;
+        }
+        #container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            background-color: rgb(247, 229, 229);
+            margin: auto;
+            margin-top: 100px;
+        }
+        #head{
+            text-align: center;
+        }
+        #submit{
+            display: block;
+            margin: auto;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    <div id="container">
+       <div>
+        <h1 id="head">sign up</h1>
+        <form id="form">
+            <input id="name" placeholder="Enter User-name" type="text" /> <br> <br>
+            <input id="email" placeholder="Enter Your E-mail" type="email" /> <br> <br>
+            <input id="password" placeholder="Create A Password" type="password" /> <br> <br>
+            <input id="submit" value="SUBMIT" type="submit" /> <br> <br>
+        </form>
+       </div>
+    </div>
+</body>
+</html>
+
+<script>
+    let formtag = document.querySelector("form");
+    formtag.addEventListener("submit",myFunction);
+    let signupArray = JSON.parse(localStorage.getItem("signupData")) || [];
+
+    function myFunction(event){
+        event.preventDefault();
+        let signupobj = {
+            name: formtag.name.value,
+            email: formtag.email.value,
+            password: formtag.password.value,
+        }
+        if(checkEmail(signupobj.email)===true){
+            signupArray.push(signupobj);
+            localStorage.setItem("signupData",JSON.stringify(signupArray));
+            alert("Sign-up Sucessful...");
+        }
+        else{
+            alert("This account already exists...")
+        }
+    }
+
+    function checkEmail(email){
+        let checkArr = signupArray.filter(function(el){
+            return email == el.email;
+        })
+        if(checkArr.length>0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+</script>

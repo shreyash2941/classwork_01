@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+<script>
+    let btnArr = [
+        {name:"Primary", color:"White", bgcolor:"blue"},
+        {name:"Secondary", color:"White", bgcolor:"grey"},
+        {name:"Danger", color:"White", bgcolor:"red"},
+        {name:"Warning", color:"black", bgcolor:"yellow"},
+        {name:"Info", color:"White", bgcolor:"cyan"},
+        {name:"Light", color:"black", bgcolor:"white"},
+        {name:"Success", color:"White", bgcolor:"green"},
+        {name:"Dark", color:"White", bgcolor:"black"},
+        {name:"Link", color:"blue", bgcolor:"white"},
+        {name:"Shreyash", color:"White", bgcolor:"blue"},
+       
+        
+    ];
+
+    btnArr.map(function (el){
+        let buttons = document.createElement("button");
+        buttons.innerText = el.name;
+        buttons.style.color = el.color;
+        buttons.style.backgroundColor = el.bgcolor;
+        document.querySelector("body").append(buttons);
+    })
+    
+
+
+</script>

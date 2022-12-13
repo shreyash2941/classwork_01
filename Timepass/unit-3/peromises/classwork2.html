@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <img src="https://media.giphy.com/media/entbCA3gy1y1fClzzI/giphy.gif" alt="" id="img">
+    
+</body>
+</html>
+
+<script>
+
+    let img = document.getElementById("img");
+
+    function getData(){
+
+        return true;
+    }
+
+
+    let myPromise = new Promise(function (resolve,reject){
+
+        let data = false; //initially we dont have data
+
+        //we are waiting for the data
+        setTimeout(function (){
+            data = getData();
+            if(data){
+                resolve("sweet");
+            }else{
+                reject("chappal");
+            }
+        },3000)
+        
+    });
+
+    // If you want to handle success value  
+    myPromise.then(function (res){
+        console.log(res);  //"sweet" after 3 seconds
+        img.src="https://media.giphy.com/media/9umH7yTO8gLYY/giphy.gif"
+    });
+    
+    // If you want to handle reject/error value 
+    myPromise.catch(function (err){
+        console.log(err);  //"chappal" after 3 seconds
+        img.src="https://media.giphy.com/media/HKch5zpaH97ck/giphy.gif"
+    });
+
+</script>

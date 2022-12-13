@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(206, 190, 249);
+        }
+        #container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            background-color: rgb(247, 229, 229);
+            margin: auto;
+            margin-top: 100px;
+        }
+        #head{
+            text-align: center;
+        }
+        #submit{
+            display: block;
+            margin: auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+         <h1 id="head">sign in</h1>
+         <form id="form">
+             <input id="email" placeholder="Enter Your E-mail" type="email" /> <br> <br>
+             <input id="password" placeholder="Enter Password Here" type="password" /> <br> <br>
+             <input id="submit" value="SUBMIT" type="submit" /> <br> <br>
+         </form>
+        </div>
+     </div>
+</body>
+</html>
+
+<script>
+    let formtag = document.querySelector("form");
+    formtag.addEventListener("submit",myFunction);
+    let userDataFromLS = JSON.parse(localStorage.getItem("signupData")) || [];
+
+    function myFunction(event){
+        event.preventDefault();
+
+        let userObj = {
+            email: formtag.email.value,
+            password: formtag.password.value,
+        }
+        if(checkPassword(userObj.email,userObj.password)==true){
+            alert("SignIn Successful...");
+            window.location.href="index.html";
+        }
+        else{
+            alert("Enter correct email or password...")
+        }
+        
+    }
+
+    function checkPassword(email,password){
+        let checked = userDataFromLS.filter(function(el){
+            return (el.email == email && el.password == password)
+        })
+        if(checked.length>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>

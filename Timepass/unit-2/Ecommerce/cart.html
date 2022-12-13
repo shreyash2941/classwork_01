@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #main_container{
+            width: 90%;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+            margin: auto;
+
+        }
+        .container{
+            border: 2px solid red;
+        }
+        .avatar{
+            width: 100%;
+            height: 70%;
+        }
+        .innerDiv1{
+            display: flex;
+            justify-content: space-around;
+        }
+        .name{
+            font-size: 30px;
+            
+        }
+        .brand{
+            font-size: 30px;
+            color: red;
+        }
+        .innerDiv2{
+            display: flex;
+            justify-content: space-around;
+        }
+        .price{
+            font-size: 30px;
+            color: rgb(8, 219, 8);
+        }
+        .catagory{
+            font-size: 30px;
+        }
+        .btn{
+            background-color: rgb(246, 137, 137);
+            font-size: 20px;
+            padding: 7px 15px;
+            border-radius: 7px;
+            display: block;
+            margin: auto;
+            color: rgb(249, 237, 237);
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="totalCount"></h1>
+
+    <div id="main_container">
+
+    </div>
+    
+</body>
+</html>
+
+<script>
+    let cartItemFromLS = JSON.parse(localStorage.getItem("cartArr")) || [];
+    
+    let count=0;
+    cartItemFromLS.map(function(el){
+        count = count+ Number(el.price)
+    })
+    document.querySelector("#totalCount").innerText=`TOTAL PRICE: ${count}`;
+    displayIt(cartItemFromLS)
+
+    function displayIt(data){
+        data.map(function(elem){
+    let division = document.createElement("div");
+    division.setAttribute("class", "container");
+    
+    let avatar = document.createElement("img");
+    avatar.setAttribute("class","avatar")
+    avatar.setAttribute("src",elem.img);
+
+    let innerDiv1 = document.createElement("div");
+    innerDiv1.setAttribute("class", "innerDiv1");
+    let name = document.createElement("p");
+    name.setAttribute("class","name");
+    name.innerText = elem.name;
+    let brand = document.createElement("p");
+    brand.setAttribute("class","brand");
+    brand.innerText = elem.brand;
+    innerDiv1.append(name,brand)
+
+    let innerDiv2 = document.createElement("div");
+    innerDiv2.setAttribute("class", "innerDiv2");
+    let price = document.createElement("p"); 
+    price.setAttribute("class","price");
+    price.innerText = elem.price;
+    let catagory = document.createElement("p"); 
+    catagory.setAttribute("class","catagory");
+    catagory.innerText = elem.catagory;
+    innerDiv2.append(price,catagory)
+
+    let btn = document.createElement("button"); 
+    btn.setAttribute("class","btn");
+    btn.innerText = "Delete";
+    btn.addEventListener("click",function(){
+        deleteFun(elem)
+    })
+    division.append(avatar,innerDiv1,innerDiv2,btn)
+    document.querySelector("#main_container").append(division);
+})
+}
+
+function deleteFun(elem){
+    let deletedArr = cartItemFromLS.filter(function(el){
+        return el.productID !== elem.productID;
+    })
+    localStorage.setItem("cartArr",JSON.stringify(deletedArr));
+    location.reload();
+}
+   
+</script>

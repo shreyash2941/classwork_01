@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+   <input id="name" type="text" placeholder="Enter Name Here" />
+   <input id="mobile" type="number" placeholder="Enter Mobile Number Here" />
+   <select id="gender">
+    <option>select gender</option>
+    <option value="M">MALE</option>
+    <option value="F">FEMALE</option>
+   </select>
+   <button onClick="clickme()">click me</button>
+   <h1 id="enterName">ENTER NAME HERE</h1>
+   <h2 id="enterMobile">ENTER MOBILE NUMBER HERE</h2>
+   <h3 id="enterGender">ENTER GENDER HERE</h3>
+</body>
+</html>
+
+<script>
+    function clickme(){
+        let name = document.getElementById("name").value;
+        let mobile = document.getElementById("mobile").value;
+        let gender = document.getElementById("gender").value;
+
+        document.getElementById("enterName").innerText=name;
+        document.getElementById("enterMobile").innerText=mobile;
+        document.getElementById("enterGender").innerText=gender;
+    }
+</script>

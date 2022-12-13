@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="masai">MASAI SCHOOL</h1>
+    <h2 class="web19">Shreyash Birajdar</h2>
+    <p>shraddha birajdar</p>
+    <p>sagar hujare</p>
+    <h3 class="web19">Avinash</h3>
+</body>
+</html>
+
+<script>
+    document.getElementById("masai").style.backgroundColor="red";
+
+    let x = document.getElementsByClassName("web19");
+    for(let i=0;i<x.length; i++){
+        x[i].style.backgroundColor="pink";
+    }
+
+    let y = document.getElementsByTagName("p");
+    for(let i=0; i<y.length; i++){
+        y[i].style.backgroundColor="teal";
+    }
+</script>
