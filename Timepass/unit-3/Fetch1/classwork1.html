@@ -113,7 +113,7 @@
     function filter(){
         let query = document.getElementById("query").value;
 
-        let copy_data = data;  //imp step
+        let copy_data = [...data];  //imp step
         copy_data = copy_data.filter(function(el){
            return  el.title.toLowerCase().includes(query);
         })
