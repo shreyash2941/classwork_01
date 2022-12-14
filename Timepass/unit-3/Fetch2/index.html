@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input id="city" placeholder="Enter city name" type="text">
+    <button onclick="getWeather()">Submit</button>
+    <div id="container">
+
+    </div>
+    
+</body>
+</html>
+
+<script>
+    // let data;
+    let container = document.getElementById("container");
+    let key = "bb75a90878e75710205a3272faf70c74";
+    async function getWeather(){
+        try {
+            let city = document.getElementById("city").value;
+
+            let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`);
+            let data = await res.json();
+            // console.log(data);
+            // console.log(data.name)
+            appendData(data)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function appendData(data){
+
+        let name = document.createElement("p");
+        name.innerText = `Name - ${data.name}`;
+
+        let temp = document.createElement("p");
+        temp.innerText = `Temprature - ${data.main.temp}`;
+
+        let humidity = document.createElement("p");
+        humidity.innerText = `Humidity - ${data.main.humidity}`;
+
+        let pressure = document.createElement("p");
+        pressure.innerText = `Pressure - ${data.main.pressure}`;
+
+        container.append(name,temp,humidity,pressure)
+
+    }
+</script>
+
+<!-- https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}  -->
