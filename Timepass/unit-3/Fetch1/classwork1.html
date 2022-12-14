@@ -1,29 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        img {
+            width: 30%;
+            height: 150px;
+        }
+
+        button {
+            padding: 10px 25px;
+        }
+    </style>
 </head>
+
 <body>
     <h1>Online Store</h1>
+    <button id="sortLH" onclick="sortLH()">Sort LH</button>
+    <button id="sortHL" onclick="sortHL()">Sort HL</button>
+    Filter: <input id="query" onInput="filter()" type="text">
     <div id="container"></div>
 </body>
+
 </html>
 
 <script>
     // "https://fakestoreapi.com/products"  
 
-    let x = fetch("https://fakestoreapi.com/products").then(function(res){
-        return res.json();
-    })
-    .then(function(res){
-        console.log(res);
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+    // let x = fetch("https://fakestoreapi.com/products").then(function(res){
+    //     return res.json();
+    // })
+    // .then(function(res){
+    //     console.log(res);
+    // })
+    // .catch(function(err){
+    //     console.log(err);
+    // });
+
+    //convert above code into async await
+    let data;
+    async function getData() {
+        try {
+            let res = await fetch("https://fakestoreapi.com/products");
+            data = await res.json();
+            // console.log(data);
+            appendProducts(data);
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    getData();
+
+    let container = document.getElementById("container");
+
+    // we need to append...
+
+    function appendProducts(data) {
+
+        document.getElementById("container").innerHTML = null;
+
+        data.forEach(function (el) {
+
+            let div = document.createElement("div");
+
+            let img = document.createElement("img");
+            img.src = el.image;
+
+            let title = document.createElement("p");
+            title.innerText = el.title;
+
+            let price = document.createElement("p");
+            price.innerText = el.price;
+
+            div.append(img, title, price);
+            container.append(div);
+
+        })
+    }
+
+    function sortLH() {
+        let copy_data = [...data]; //spread operator
+        copy_data = copy_data.sort(function (a, b) {
+            return a.price - b.price;
+        })
+        appendProducts(copy_data);
+        // console.log(data);
+        // console.log(copy_data);
+    }
+
+    function sortHL() {
+        let copy_data = [...data]; //spread operator
+        copy_data = copy_data.sort(function (a, b) {
+            return b.price - a.price;
+        })
+        appendProducts(copy_data);
+        // console.log(data);
+        // console.log(copy_data);
+    }
+
+    function filter(){
+        let query = document.getElementById("query").value;
+
+        let copy_data = data;  //imp step
+        copy_data = copy_data.filter(function(el){
+           return  el.title.toLowerCase().includes(query);
+        })
+        appendProducts(copy_data);
+    }
+
 
 
 </script>
