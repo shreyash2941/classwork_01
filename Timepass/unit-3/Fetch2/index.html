@@ -18,6 +18,7 @@
 <script>
     // let data;
     let container = document.getElementById("container");
+    let map = document.getElementById("gmap_canvas");
     let key = "bb75a90878e75710205a3272faf70c74";
     async function getWeather(){
         try {
@@ -47,7 +48,11 @@
         let pressure = document.createElement("p");
         pressure.innerText = `Pressure - ${data.main.pressure}`;
 
-        container.append(name,temp,humidity,pressure)
+        container.append(name,temp,humidity,pressure);
+
+        //appending a map
+
+        map.src = `https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`
 
     }
 </script>
