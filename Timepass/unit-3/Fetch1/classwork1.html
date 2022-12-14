@@ -110,15 +110,7 @@
         // console.log(copy_data);
     }
 
-    function filter(){
-        let query = document.getElementById("query").value;
-
-        let copy_data = data;  //imp step
-        copy_data = copy_data.filter(function(el){
-           return  el.title.toLowerCase().includes(query);
-        })
-        appendProducts(copy_data);
-    }
+   
 
 
 
