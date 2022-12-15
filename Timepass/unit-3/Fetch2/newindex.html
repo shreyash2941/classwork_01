@@ -26,7 +26,7 @@
             let cityValue = document.getElementById("city").value;
             let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`);
             let data = await res.json();
-            // console.log(data)
+            
             appendData(data,cityValue) 
         } catch (err) {
             console.log(error);
