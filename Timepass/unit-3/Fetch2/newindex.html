@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+    <input id="city" placeholder="Enter City Name" type="text">
+    <button id="btn" onclick="getData()">Submit</button>
+    <div id="container">
+        <!-- Append your data here  -->
+    </div>
+    <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=pune&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://fmovies-online.net"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+<script>
+
+    let key = "bb75a90878e75710205a3272faf70c74";
+    let container = document.getElementById("container");
+
+    async function getData(){
+        try {
+            let cityValue = document.getElementById("city").value;
+            let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`);
+            let data = await res.json();
+            // console.log(data)
+            appendData(data,cityValue) 
+        } catch (err) {
+            console.log(error);
+        }
+    }
+
+    function appendData(data,cityValue){
+        container.innerHTML=null;
+
+        let div1 = document.createElement("div");
+        div1.setAttribute("id","div1")
+
+        let name = document.createElement("p");
+        name.innerText = `Name = ${data.name}`;
+
+        let temp = document.createElement("p");
+        temp.innerText = `Temprature = ${data.main.temp}`;
+
+        let pressure = document.createElement("p");
+        pressure.innerText = `Pressure = ${data.main.pressure}`;
+
+        let humidity = document.createElement("p");
+        humidity.innerText = `Name = ${data.main.humidity}`;
+
+        div1.append(name,temp,pressure,humidity);   
+        container.append(div1);
+
+        document.getElementById("gmap_canvas").src= `https://maps.google.com/maps?q=${cityValue}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+    }
+</script>
+
+<!-- https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} -->
+
+<!-- humidity = data.main.humidity;
+pressure = data.main.pressure;
+temp = data.main.temp; -->
+
+
