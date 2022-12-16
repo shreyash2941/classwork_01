@@ -58,5 +58,13 @@
         })
     }
 
-   
+    function debounce(func,delay){
+        if(id){
+            clearInterval(id);
+        }
+
+        id=setTimeout(function(){
+            func();
+        },delay)
+    }
 </script>
