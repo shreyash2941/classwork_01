@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            width: 250px;
+        }
+        #movies{
+            border: 2px solid red;
+            width: 255px;
+            height: 250px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hotstar Search Box by debouncing</h1>
+    <input id="query" placeholder="Enter Movies Name" oninput="debounce(main,1000)" type="text" />
+    <div id="movies">
+        <!-- Append all movies here  -->
+    </div>
+</body>
+</html>
+
+<script>
+     let movies = document.getElementById("movies");
+    let id;
+    async function main(){
+       try {
+            let query = document.getElementById("query").value;
+            // console.log(query); 
+            let res = await fetch(`http://www.omdbapi.com/?apikey=cc1f992b&&s=${query}`)
+            let data = await res.json();
+            let actual_data = data.Search;
+            if(actual_data != undefined){
+                appendData(actual_data)
+                console.log(actual_data)
+            }
+       } catch (error) {
+            console.log(error);
+       }
+    }
+
+    function appendData(actual_data){
+        movies.innerHTML="";
+        actual_data.forEach(function(el){
+            let div1 = document.createElement("div");
+
+            let title =  document.createElement("p");
+            title.innerText = el.Title;
+
+            div1.append(title);
+            movies.append(div1);
+        })
+    }
+
+    function debounce(func,delay){
+        if(id){
+            clearInterval(id);
+        }
+
+        id=setTimeout(function(){
+            func();
+        },delay)
+    }
+</script>

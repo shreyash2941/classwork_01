@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    function sum(a,b,c){
+
+        return {
+            sumOfTwo:function(){
+                return a+b;
+            },
+
+            sumOfThree:function(){
+                return a+b+c;
+            }
+        }
+    }
+
+    let store = sum(5,9,11)
+    console.log(store.sumOfTwo());
+    console.log(store.sumOfThree());
+
+    let store1 = sum(50,90,110)
+    console.log(store1.sumOfTwo());
+    console.log(store1.sumOfThree());
+</script>

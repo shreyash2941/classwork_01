@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            width: 200px;
+        }
+        #movies{
+            border: 1px solid black;
+            height: 200px;
+            width: 205px;
+            /* imp  */
+            overflow: scroll; 
+        }
+
+    </style>
+</head>
+<body>
+    <input id="query" type="text" oninput="main()" />
+    <div id="movies">
+        <!-- Append movies here  -->
+    </div>
+</body>
+</html>
+
+<script>
+    let movies_div = document.getElementById("movies");
+    async function main() {
+        try {
+            let query = document.getElementById("query").value;
+            console.log(query)
+            // we will take data from omdb api 
+            let res = await fetch(`http://www.omdbapi.com/?apikey=cc1f992b&&s=${query}`)
+            let data = await res.json();
+            let actual_data = data.Search;
+            if(actual_data != undefined){
+                appendMovies(actual_data);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function appendMovies(data){
+        movies_div.innerHTML=null;
+        data.forEach(function(el){
+
+            let p = document.createElement("p");
+            p.innerText = el.Title;
+
+
+
+            movies_div.append(p);
+        })
+    }
+</script>
